@@ -1,0 +1,24 @@
+Add:
+    File named __maps__:
+                            File with map tiles:
+                                                path
+                                                plains
+                                                forest
+                                                hill
+                                                river
+                                                bridge
+
+                                                Each will have two Graphic variants: Winter - white
+                                                                                     Sprink - green
+    file with images:
+                        troops - 5 color variants for oponents - red - defaul1 - df for player
+                                                                 blue - defalut2 - df for enemy
+                                                                 green
+                                                                 yellow
+                                                                 brown
+                        cannons - same as troops with color
+    abilities:
+    troops: movement 2 tiles per turn, when on road 3 tiles but only on road
+            health 20 hp points, if lost 4 hp it will lose one musketeer
+            attack power/Mdmg = chance to hit = how many musketeers left #so if the musketeers are 3 the chance is 1 - 3 Mdmg if there is 5 musketeers the chance is 3 - 5 and so on
+            sword attack/Sdmg = chance to hit = 
