@@ -5,5 +5,5 @@ this repository is my school project and with this rep. I want to start learning
 the game will be written in python mainly using pygame
 ## WIP
 meanwhile I'm still brainstorming ideas, posibilities and aprouches to my problem
-### Current Problem
+### Current Problem:
 hexagons
