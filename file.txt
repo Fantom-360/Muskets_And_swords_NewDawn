@@ -27,3 +27,13 @@ Add:
 
 
 
+
+hexagonal grid: add: main grid + try to figure how to cords between them 
+        first idea: make it that when i say how many row it create rows the for loop should only go for 2 times one for the 3 hexagons and the second one for the socond row of grids
+        second idea: make it with cube cors disadv: harder to implement, 3 dim cord system adv: better movement on cors and better knowing but the time will show. 
+
+
+
+
+basic same long side hexagon: made from 6 same tryangles each side of tryangle is 60° and every side is same, so radius = side .
+
