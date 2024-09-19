@@ -1,6 +1,6 @@
 while True:
     try:
-        print("for 'YES' enter '1' and for 'NO' enter '0'")
+        print("for 'YES' enter '1' and for 'NO' enter '0'\n")
         a = int(input("will we call today? "))
     except ValueError:
         print("something went wrong try something else")
