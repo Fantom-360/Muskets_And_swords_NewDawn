@@ -1,72 +1,129 @@
 import pygame
 import math
 
-# Screen setup
-screen_setup = (800, 600)
-radius = 30
-num_rows = 7
-num_columns = 7
-
-def draw_hexagon(surface, color, center, size, border_thickness=2):
-    SIDECOLOR = (0, 0, 0)
-    points = []
-    
-    for i in range(6):
-        angle = math.radians(60 * i)
-        x = center[0] + size * math.cos(angle)
-        y = center[1] + size * math.sin(angle)
-        points.append((x, y))
-    
-    pygame.draw.polygon(surface, color, points)
-    
-    for i in range(6):
-        pygame.draw.line(surface, SIDECOLOR, points[i], points[(i + 1) % 6], border_thickness)
+## game set up
 
 pygame.init()
+
+screen_setup = (800, 600)
+
+hex_color = (0, 0, 255)
+
 screen = pygame.display.set_mode(screen_setup)
 
-running = True
-while running:
-    for event in pygame.event.get():
-        if event.type == pygame.QUIT:
-            running = False
+clock = pygame.time.Clock()
+
+
+#class HexObject:
+#    def __init__(self, surface, color, center, hex_size):
+
+## main sizes/ game values
+
+hex_size = 30
+
+hex_height = math.sqrt(3) * hex_size
+
+hex_widht = 2 * hex_size
+
+x_offset = 3/2 * hex_size
+
+y_offset = hex_height
+
+
+
+
+
+#main hex drawing func
+def drawHex(surface, color, pos):
+
+    border_thickenss = 3
+
+    border_col = (0, 0, 0)
+
+    points = []
+
+    for i in range(6):
+
+        angle = math.radians(60*i)
+
+        x_i = pos[0] + hex_size * math.cos(angle)
+        y_i = pos[1] + hex_size * math.sin(angle)
+
+        points.append((x_i, y_i))
+
+    pygame.draw.polygon(surface, color, points)
+
+    for i in range(6):
+
+        pygame.draw.line(surface, border_col, points[i], points[(i+1) % 6], border_thickenss)
+
+# creating a hex map for coords and stuff
+
+def create_hex_map(rows, cols):
+
+    hex_map = []
+
+    for r in range(rows):
+
+        row = []
+
+        for q in range(cols):
+
+            #new hex creating logic based on old one but still new and newly with coords
+
+            x = ((0 + x_offset) - (q / 2) + (q * x_offset))
+
+            y = ((0 + y_offset) - (r / 2) + (r * y_offset))
+
+            if q % 2 == 1:
+
+                y += y_offset / 2
+
+            row.append((x, y))
+
+        hex_map.append(row)
     
-    screen.fill((255, 255, 255))  # White background
+    return hex_map
 
-    # Calculate the spacing between hexagons
-    # Special thanks to  __kumarmohit0911__ for helping with logic of generationg hexagon grid the right way
-     
-    hex_width = radius * 2
-    hex_height = math.sqrt(3) * radius
-    x_offset = hex_width * 3/4
-    y_offset = hex_height
 
-    coordinates = []
-    
 
-    for row in range(num_rows):
+#main game set up
+def main():
+
+    rows, cols = 3, 3 #number of hexes
+
+    hex_map = create_hex_map(rows, cols)
+
+    # main game loop
+
+    running = True
+
+    while running:
+
+        for event in pygame.event.get():
+
+            if event.type == pygame.QUIT:
+
+                running = False
         
-        for col in range(num_columns):
-
-            rq_cors= []
-
-            x = (screen_setup[0] / 2) - (num_columns * x_offset) / 2 + col * x_offset
-            y = (screen_setup[1] / 2) - (num_rows * y_offset) / 2 + row * y_offset
-            if col % 2 == 1:
-                y += y_offset / 2  # Shift every other column down
-            draw_hexagon(screen, (0, 0, 255), (x, y), radius)
-            #making coords for hexagons
-            rq_cors.append(row)
-            rq_cors.append(col)
-            
-            #appending hex coords in form of 2D matrix
-            coordinates.append(rq_cors)
-    
+        screen.fill((255, 255, 255))
 
 
+        for row in hex_map:
 
-    pygame.display.flip()
+            for hex_pos in row:
 
-pygame.quit()
+                drawHex(screen, hex_color, hex_pos)
 
-print(coordinates)
+        pygame.display.flip()
+
+        clock.tick(60)
+
+    pygame.quit()
+
+    print(hex_map)
+
+
+if __name__ == "__main__":
+
+    main()
