@@ -6,4 +6,7 @@ the game will be written in python mainly using pygame
 ## WIP
 meanwhile I'm still brainstorming ideas, posibilities and aprouches to my problem
 ### Current Problem:
-hexagons
+secting Hexagons
+
+## Newly added
+hex map with accurate hex coordinates, logic and func restructer
