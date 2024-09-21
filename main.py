@@ -85,12 +85,38 @@ def create_hex_map(rows, cols):
     
     return hex_map
 
+def pixel_to_hex(x, y):
+
+    q = (x * math.sqrt(3)/3 - y / 3) / hex_size
+    
+    r = y * 2/3 / hex_size
+
+    return hex_round(q, r)
+
+# Function to round hex coordinates to nearest integer
+def hex_round(q, r):
+    z = -q - r
+    rq = round(q)
+    rr = round(r)
+    rz = round(z)
+
+    q_diff = abs(rq - q)
+    r_diff = abs(rr - r)
+    z_diff = abs(rz - z)
+
+    if q_diff > r_diff and q_diff > z_diff:
+        rq = -rr - rz
+    elif r_diff > z_diff:
+        rr = -rq - rz
+
+    return (rq, rr)
+
 
 
 #main game set up
 def main():
 
-    rows, cols = 3, 3 #number of hexes
+    rows, cols = 10, 17 #number of hexes
 
     hex_map = create_hex_map(rows, cols)
 
@@ -122,7 +148,6 @@ def main():
     pygame.quit()
 
     print(hex_map)
-
 
 if __name__ == "__main__":
 

@@ -10,6 +10,9 @@ Add:
 
                                                 Each will have two Graphic variants: Winter - white
                                                                                      Sprink - green
+
+
+                                                specialiti you can break the ice on winter maps
     file with images:
                         troops - 5 color variants for oponents - red - defaul1 - df for player
                                                                  blue - defalut2 - df for enemy
