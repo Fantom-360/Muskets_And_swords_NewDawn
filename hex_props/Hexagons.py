@@ -34,7 +34,7 @@ def draw_hex(surface, color, pos, size):
 
         pygame.draw.line(surface, BORDER_COLOR, points[i], points[(i+1) % 6], BORDER_SIZE)
     
-def axial_to_pixel(q, r, size):
+def hex_to_pixel(q, r, size):
     width = math.sqrt(3) * size
     height = 2 * size
     x = size * (3/2) * q
@@ -42,11 +42,35 @@ def axial_to_pixel(q, r, size):
 
     return (x, y)
 
-def pixel_to_axial(x, y, size):
+def pixel_to_hex(x, y, size):
     q = (2/3 * x) / size
     r = (-1/3 * x + math.sqrt(3)/3*y) / size
 
-    return hex_round
+    return hex_round(q, r)
+
+
+def hex_round(q, r):
+    x = q
+    z = r
+    y = -x - z
+
+    rx = round(x)
+    ry = round(y)
+    rz = round(z)
+
+    x_diff = abs(rx - x)
+    y_diff = abs(ry - y)
+    z_diff = abs(rz - z)
+
+    if x_diff > y_diff and x_diff > z_diff:
+        rx = -ry - rz
+    elif y_diff > z_diff:
+        ry = -rx - rz
+    else:
+        rz = -rx - ry
+
+    return (rx, rz)
+
 
 def build_hex_graph(rows, cols):
     hex_graph = {}
@@ -59,14 +83,19 @@ def build_hex_graph(rows, cols):
 
     return hex_graph
 
-def draw_hex_grid(surface, hex_graph, size):
+def draw_hex_grid(surface, hex_graph, size, highlight_hex=None):
 
     for (q, r), hexagon in hex_graph.items():
 
-        center = axial_to_pixel(q, r, size)
+        center = hex_to_pixel(q, r, size)
 
-        draw_hex(surface, (0,0,255), center, size)
+        color = (0,0,255)
 
+        if highlight_hex and (q, r) == highlight_hex:
+
+            color = (255,0,0)
+
+        draw_hex(surface, color, center, size)
 
 pygame.init()
 
@@ -78,9 +107,9 @@ screen = pygame.display.set_mode(screen_setup)
 
 hex_size = 30
 
-rows = 2
+rows = 10
 
-cols = 5
+cols = 15
 
 hex_graph = build_hex_graph(rows, cols)
 
@@ -90,18 +119,17 @@ while run:
         if event.type == pygame.QUIT:
             run = False
 
-
-
-
-
-
-
     screen.fill((255,255,255))
 
+    mouse_pos = pygame.mouse.get_pos()
 
+    highlight_hex = pixel_to_hex(mouse_pos[0], mouse_pos[1], hex_size)
 
-    draw_hex_grid(screen, hex_graph, hex_size)
+    draw_hex_grid(screen, hex_graph, hex_size, highlight_hex)
 
     pygame.display.flip()
 
 pygame.quit
+
+
+print(hex_round())
