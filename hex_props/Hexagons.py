@@ -1,5 +1,6 @@
 import math
 import pygame
+import time
 
 class Hex_node:
     def __init__(self, q, r):
@@ -45,6 +46,7 @@ def hex_to_pixel(q, r, size):
 def pixel_to_hex(x, y, size):
     q = (2/3 * x) / size
     r = (-1/3 * x + math.sqrt(3)/3*y) / size
+    print(q, r)
 
     return hex_round(q, r)
 
@@ -68,6 +70,8 @@ def hex_round(q, r):
         ry = -rx - rz
     else:
         rz = -rx - ry
+
+    print(rx, rz)
 
     return (rx, rz)
 
@@ -105,6 +109,8 @@ hex_color = (0, 0, 255)
 
 screen = pygame.display.set_mode(screen_setup)
 
+clock = pygame.time.Clock()
+
 hex_size = 30
 
 rows = 10
@@ -115,6 +121,9 @@ hex_graph = build_hex_graph(rows, cols)
 
 run = True
 while run:
+
+    time.sleep(2)
+
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
@@ -125,11 +134,12 @@ while run:
 
     highlight_hex = pixel_to_hex(mouse_pos[0], mouse_pos[1], hex_size)
 
-    draw_hex_grid(screen, hex_graph, hex_size, highlight_hex)
+    draw_hex_grid((screen, hex_graph, hex_size, highlight_hex)
 
     pygame.display.flip()
 
+    clock.tick(60)
+
+    print(mouse_pos)
+
 pygame.quit
-
-
-print(hex_round())
