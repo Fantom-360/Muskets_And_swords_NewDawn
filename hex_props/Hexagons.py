@@ -24,8 +24,8 @@ def draw_hex(surface, color, pos, size):
 
         angle = math.radians(60*i)
 
-        x_i = pos[0] + size * math.cos(angle)
-        y_i = pos[1] + size * math.sin(angle)
+        x_i = pos[0]+ size * math.cos(angle)
+        y_i = pos[1]+ size * math.sin(angle)
 
         points.append((x_i, y_i))
 
@@ -36,17 +36,17 @@ def draw_hex(surface, color, pos, size):
         pygame.draw.line(surface, BORDER_COLOR, points[i], points[(i+1) % 6], BORDER_SIZE)
     
 def hex_to_pixel(q, r, size):
-    width = math.sqrt(3) * size
-    height = 2 * size
+   
     x = size * (3/2) * q
-    y = width * (r + 0.5 *(q % 2))
+    y = size * math.sqrt(3) * (r + 0.5 * (q % 2))
 
     return (x, y)
 
 def pixel_to_hex(x, y, size):
-    q = (2/3 * x) / size
-    r = (-1/3 * x + math.sqrt(3)/3*y) / size
-    print(q, r)
+
+    q = (2 / 3 * x) / size
+
+    r = (-1 / 3 * x + math.sqrt(3) / 3 * y) / size
 
     return hex_round(q, r)
 
@@ -71,8 +71,6 @@ def hex_round(q, r):
     else:
         rz = -rx - ry
 
-    print(rx, rz)
-
     return (rx, rz)
 
 
@@ -89,7 +87,7 @@ def build_hex_graph(rows, cols):
 
 def draw_hex_grid(surface, hex_graph, size, highlight_hex=None):
 
-    for (q, r), hexagon in hex_graph.items():
+    for (q, r), hex in hex_graph.items():
 
         center = hex_to_pixel(q, r, size)
 
@@ -111,7 +109,7 @@ screen = pygame.display.set_mode(screen_setup)
 
 clock = pygame.time.Clock()
 
-hex_size = 30
+hex_size = 20
 
 rows = 10
 
@@ -122,7 +120,7 @@ hex_graph = build_hex_graph(rows, cols)
 run = True
 while run:
 
-    time.sleep(2)
+    time.sleep(1)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -134,12 +132,11 @@ while run:
 
     highlight_hex = pixel_to_hex(mouse_pos[0], mouse_pos[1], hex_size)
 
-    draw_hex_grid((screen, hex_graph, hex_size, highlight_hex)
+    draw_hex_grid(screen, hex_graph, hex_size, highlight_hex)
 
     pygame.display.flip()
 
     clock.tick(60)
 
-    print(mouse_pos)
 
 pygame.quit
