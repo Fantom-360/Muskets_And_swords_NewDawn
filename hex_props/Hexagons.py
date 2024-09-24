@@ -8,9 +8,7 @@ class Hex_node:
         self.r = r
         self.neighbors = []
 
-    def add_neightbor(self, neighbor_hex):
-
-        self.neighbors.append(neighbor_hex)
+    
 
 def draw_hex(surface, color, pos, size):
 
@@ -38,6 +36,7 @@ def draw_hex(surface, color, pos, size):
 def hex_to_pixel(q, r, size):
    
     x = size * (3/2) * q
+
     y = size * math.sqrt(3) * (r + 0.5 * (q % 2))
 
     return (x, y)
@@ -111,12 +110,13 @@ clock = pygame.time.Clock()
 
 hex_size = 20
 
-rows = 10
+rows = 2
 
-cols = 15
+cols = 2
 
 hex_graph = build_hex_graph(rows, cols)
 
+print(hex_graph)
 run = True
 while run:
 
