@@ -36,6 +36,17 @@ hexagonal grid: add: main grid + try to figure how to cords between them
         cord fugurated, now proble return them on the right hexagon
         create test figure circle|tryangle on hex by cords on hex centre
 
+        selcting unit will be thing of counting an distance between mouse pos and center of hex to ensure that we can get of that rounding stuff 
+        also i want to ensure that the code is easy to read so I'm still making my self go more further the rabbit hole on the theme of making things with hexeagos
+        and starting the project over 
+
+        hexagonal grid should be drawn normaly but conecting the hex grid for further progress of pathfinding and moving from one to another 
+
+
+        but well I'm still trying to figure out some thing i dont stil fully understand so it wil be a lot of fun and it is a lot of fun
+
+        "ohh my progress is so slow bc ||i miss my loved one|| they are somewhere and the night are so lonely"
+
 
 
 
