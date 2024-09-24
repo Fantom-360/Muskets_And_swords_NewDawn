@@ -56,22 +56,28 @@ def hex_round(q, r):
     z = r
     y = -x - z
 
-    rx = round(x)
-    ry = round(y)
-    rz = round(z)
+    round_x = round(x)
+    round_y = round(y)
+    round_z = round(z)
 
-    x_diff = abs(rx - x)
-    y_diff = abs(ry - y)
-    z_diff = abs(rz - z)
+    x_diff = abs(round_x - x)
+    y_diff = abs(round_y - y)
+    z_diff = abs(round_z - z)
 
     if x_diff > y_diff and x_diff > z_diff:
-        rx = -ry - rz
-    elif y_diff > z_diff:
-        ry = -rx - rz
-    else:
-        rz = -rx - ry
 
-    return (rx, rz)
+        round_x = -round_y - round_z
+
+    elif y_diff > z_diff:
+
+        round_y = -round_x - round_z
+        
+    else:
+
+        round_z = -round_x - round_y
+
+
+    return (round_x, round_z)
 
 
 def build_hex_graph(rows, cols):
@@ -120,7 +126,7 @@ hex_graph = build_hex_graph(rows, cols)
 run = True
 while run:
 
-    time.sleep(1)
+    time.sleep(2)
 
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
@@ -137,6 +143,8 @@ while run:
     pygame.display.flip()
 
     clock.tick(60)
+
+    print(mouse_pos)
 
 
 pygame.quit
