@@ -96,8 +96,10 @@ def hex_round(q, r):
     
     return (rx, rz)
 
+def drawTroop()
 
-map_size = 1
+
+map_size = 3
 hex_size = 30
 
 running = True
@@ -123,6 +125,8 @@ while running:
     if (-map_size <= q <= map_size) and (-map_size <= r <= map_size):
         center = axial_to_pixel(q, r, hex_size)
         draw_hexagon(screen, center, hex_size, HIGHLIGHT)
+
+    
     
     # Update the display
     pygame.display.flip()
