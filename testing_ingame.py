@@ -53,8 +53,8 @@ def build_adjacency_list(map_size):
 
 # Get neighbors function (reused from earlier)
 def get_neighbors(q, r):
-    directions = [(+1, 0), (0, +1), (-1, +1), 
-                  (-1, 0), (0, -1), (+1, -1)]
+    directions = [(-1, 0), (-1, -1), (0, -1), 
+                  (-1, +1), (0, +1), (+1, 0)]
     
     return [(q + dq, r + dr) for dq, dr in directions]
 
@@ -96,11 +96,11 @@ def hex_round(q, r):
     
     return (rx, rz)
 
-def drawTroop()
+def drawTroop():
+    pass
 
-
-map_size = 3
-hex_size = 30
+map_size = 5
+hex_size = 20
 
 running = True
 while running:
@@ -126,12 +126,7 @@ while running:
         center = axial_to_pixel(q, r, hex_size)
         draw_hexagon(screen, center, hex_size, HIGHLIGHT)
 
-    
-    
     # Update the display
     pygame.display.flip()
 
 pygame.quit()
-
-
-
