@@ -1,5 +1,6 @@
 import math
 import pygame
+import time
 
 pygame.init()
 
@@ -22,14 +23,15 @@ hex_height = math.sqrt(3) * hex_size
 hex_offset_x = 3/4 * hex_width
 hex_offset_y = hex_height
 
-x_start = 50
-y_start = 50
+x_start = 0
+y_start = 0
+
 
 def draw_hex(surface, color, pos, hex_size):
 
     #border setings
 
-    border_thickness = 2
+    border_thickness = 3
     border_color = (0,0,0)
 
     #main logic part for drawing hexagons
@@ -53,16 +55,31 @@ def draw_hex(surface, color, pos, hex_size):
 
         pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
 
-x_hex_down = x_start + hex_offset_x/2 + hex_size
-y_hex_down = y_start + hex_offset_y/2
-x_hex_far_left = x_start + hex_size * 3
+def draw_hex_map(screen:tuple, rows:int, columns:int):
 
-pos1 = (x_start, y_start)
-pos2 = (x_hex_down, y_hex_down)
-pos4 = (x_hex_far_left, y_start)
-pos3 = (pos1[0], pos1[1]+ hex_offset_y)
-pos5 = (pos2[0], pos2[1]+ hex_offset_y)
-pos6 = (pos4[0], pos4[1]+ hex_offset_y)
+    hex_coords = []
+
+    for row in range(rows):
+
+        for column in range(columns):
+
+            x = x_start + hex_size*column + (hex_offset_x/2)*column
+            y = y_start + (hex_height/2)*row +(hex_offset_y/2)*row
+
+            if column % 2 == 1:
+
+                y += hex_offset_y/2
+
+            hex_pos = (x, y)
+            hex_coords.append((row, column))
+
+            draw_hex(screen, hex_color, hex_pos, hex_size)
+    
+    
+    
+columns = 10
+row = 10
+
 
 run = True
 
@@ -75,28 +92,9 @@ while run:
             run = False
         
     screen.fill((255, 255, 255))
-    '''
-    draw_hex(screen, hex_color, pos1, hex_size) 
-    draw_hex(screen, hex_color, pos2, hex_size)
-    draw_hex(screen, hex_color, pos4, hex_size)
-    draw_hex(screen, hex_color, pos3, hex_size)
-    draw_hex(screen, hex_color, pos5, hex_size)
-    draw_hex(screen, hex_color, pos6, hex_size)
-    '''
-    for column in range(3):
 
-        x = x_start + hex_size + ((hex_offset_x) * column)/2
-        y = y_start 
-
-        if column % 2 == 1:
-
-            y += hex_offset_y/2
-
-        hex_pos = (x, y)
-
-        draw_hex(screen, hex_color, hex_pos, hex_size)
-       
-
+    draw_hex_map(screen, row, columns)
+    
     pygame.display.flip()
 
     clock.tick(60)
@@ -108,3 +106,4 @@ pygame.quit()
 
 
 
+                                    
