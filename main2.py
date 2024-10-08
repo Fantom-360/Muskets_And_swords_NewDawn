@@ -29,7 +29,7 @@ def draw_hex(surface, color, pos, hex_size):
 
     #border setings
 
-    border_thickness = 2
+    border_thickness = 3
     border_color = (0,0,0)
 
     #main logic part for drawing hexagons
@@ -66,6 +66,9 @@ pos6 = (pos4[0], pos4[1]+ hex_offset_y)
 
 run = True
 
+rows = 5
+columns = 5
+
 while run:
 
     for event in pygame.event.get():
@@ -83,18 +86,20 @@ while run:
     draw_hex(screen, hex_color, pos5, hex_size)
     draw_hex(screen, hex_color, pos6, hex_size)
     '''
-    for column in range(3):
+    for row in range(rows):
 
-        x = x_start + hex_size + ((hex_offset_x) * column)/2
-        y = y_start 
+        for column in range(columns):
 
-        if column % 2 == 1:
+            x = x_start + (hex_size*column) + (hex_offset_x*column)/2
+            y = y_start + (hex_height*row)/2 + (hex_offset_y*row)/2
 
-            y += hex_offset_y/2
+            if column % 2 == 1:
 
-        hex_pos = (x, y)
+                y += hex_offset_y/2
 
-        draw_hex(screen, hex_color, hex_pos, hex_size)
+            hex_pos = (x, y)
+
+            draw_hex(screen, hex_color, hex_pos, hex_size)
        
 
     pygame.display.flip()
