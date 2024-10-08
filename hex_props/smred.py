@@ -1,157 +1,106 @@
 import pygame
 import math
 
-# Initialize pygame
+# Initialize Pygame
 pygame.init()
 
-# Window size
+# Screen dimensions
 WIDTH, HEIGHT = 800, 600
 screen = pygame.display.set_mode((WIDTH, HEIGHT))
-pygame.display.set_caption("Hex Grid with Troop Placement")
-
-# Hexagon settings
-HEX_SIZE = 30  # The radius of the hexagon
-HEX_WIDTH = HEX_SIZE * 2
-HEX_HEIGHT = math.sqrt(3) * HEX_SIZE
-HEX_SPACING_X = HEX_WIDTH * 3/4  # Horizontal distance between hex centers
-HEX_SPACING_Y = HEX_HEIGHT  # Vertical distance between hex centers
 
 # Colors
 WHITE = (255, 255, 255)
-RED = (255, 0, 0)
-BLUE = (0, 0, 255)
-GREEN = (0, 255, 0)
 BLACK = (0, 0, 0)
-YELLOW = (255, 255, 0)
+HIGHLIGHT = (255, 200, 0)  # Highlight color
 
-# Selected hexes and troop positions
-selected_hex = None
-troops = []  # List of (x, y) positions for troops
+# Hexagon properties
+hex_size = 30
+map_width = 5  # Number of hex columns
+map_height = 5   # Number of hex rows
 
-def distance(x1, y1, x2, y2):
-    """
-    Calculate the Euclidean distance between two points (x1, y1) and (x2, y2).
-    """
-    return math.sqrt((x2 - x1) ** 2 + (y2 - y1) ** 2)
+def hex_corner(center, size, i):
+    """Calculate the corner of a hexagon given its center, size, and corner index (0-5)."""
+    angle_deg = 60 * i # Offset for flat-topped hex
+    angle_rad = math.pi / 180 * angle_deg
+    return (center[0] + size * math.cos(angle_rad),
+            center[1] + size * math.sin(angle_rad))
 
-def draw_hexagon(surface, color, x, y, size, border_color=None):
+def draw_hexagon(surface, center, size, color=BLACK):
+    """Draw a hexagon at a given center position."""
+    points = [hex_corner(center, size, i) for i in range(6)]
+    pygame.draw.polygon(surface, color, points, 2)  # 2 means line thickness
 
-    """
-    Draw a hexagon centered at (x, y) with the given size.
-    If border_color is provided, a border will be drawn around the hexagon.
-    """
+def axial_to_pixel(q, r, size):
+    """Convert axial coordinates (q, r) to pixel coordinates (x, y) for hexagon center."""
+    x = size * 3/2 * q  # Horizontal spacing based on q
+    y = size * math.sqrt(3) * r + (q % 2) * (size * math.sqrt(3) / 2)  # Adjust vertical spacing
+    return (x + WIDTH // 2, y + HEIGHT // 2)  # Center on screen
+
+def pixel_to_axial(x, y, size):
+    """Convert pixel coordinates (x, y) to axial coordinates (q, r)."""
+    x = (x - WIDTH // 2) / size
+    y = (y - HEIGHT // 2) / size
     
-    points = []
-    for i in range(6):
-
-        angle = math.radians(60*i)
-
-        point_x = x + size * math.cos(angle)
-
-        point_y = y + size * math.sin(angle)
-
-        points.append((point_x, point_y))
+    q = (2/3 * x)
+    r = (-1/3 * x + (math.sqrt(3)/3) * y)
     
-    # Draw filled hexagon
-    pygame.draw.polygon(surface, color, points)
+    return round(q), round(r)
+
+def get_neighbors(q, r):
+    """Get neighboring axial coordinates for a hexagon."""
+    directions = [(+1, 0), (0, +1), (-1, +1), (-1, 0), (0, -1), (+1, -1)]
+    return [(q + dq, r + dr) for dq, dr in directions]
+
+def build_adjacency_list(map_width, map_height):
+    """Build adjacency list for hex grid."""
+    adjacency_list = {}
     
-    # Draw border if provided
-    if border_color:
-        pygame.draw.polygon(surface, border_color, points, width=2)
-
-def is_mouse_in_hex(mouse_x, mouse_y, hex_center_x, hex_center_y, radius):
-
-    """
-    Check if the mouse is within the given hexagon by measuring the distance
-    between the mouse and the hex center.
-    """
-
-    dist = distance(mouse_x, mouse_y, hex_center_x, hex_center_y)
-
-    return dist <= radius
-
-def highlight_hex_if_mouse_over(mouse_x, mouse_y, hexagons, radius):
-    """
-    Iterate through the hexagons and highlight the one the mouse is hovering over.
-    Returns the coordinates of the hovered hexagon.
-    """
-    for hex_center_x, hex_center_y in hexagons:
-
-        if is_mouse_in_hex(mouse_x, mouse_y, hex_center_x, hex_center_y, radius):
-
-            # If the mouse is inside the hexagon, highlight it in red
-
-            draw_hexagon(screen, WHITE, hex_center_x, hex_center_y, radius, border_color=RED)
-
-            return (hex_center_x, hex_center_y)
-        
-        else:
-
-            # Draw hex in normal white color with black border
-
-            draw_hexagon(screen, WHITE, hex_center_x, hex_center_y, radius, border_color=BLACK)
-
-    return None
-
-def create_hex_grid(columns, rows, hex_size):
-    """
-    Create a grid of hexagons and return their centers.
-    """
-    hexagons = []
+    for r in range(map_height):
+        for q in range(map_width):
+            # Add each hexagon and its neighbors
+            adjacency_list[(q, r)] = get_neighbors(q, r)
     
-    for row in range(rows):
+    return adjacency_list
 
-        for col in range(columns):
+def draw_grid(surface, map_width, map_height, hex_size):
+    """Draw a hexagonal grid."""
+    for r in range(map_height):
+        for q in range(map_width):
+            center = axial_to_pixel(q, r, hex_size)
+            draw_hexagon(surface, center, hex_size)
 
-            # Calculate hex center positions
+# Build adjacency list
+adjacency_list = build_adjacency_list(map_width, map_height)
 
-            hex_x = hex_size * (3/2) * col
+# Print adjacency list for debugging
+print("Adjacency List:")
+for hexagon, neighbors in adjacency_list.items():
+    print(f"{hexagon}: {neighbors}")
 
-            hex_y = hex_size * math.sqrt(3) * (row + 0.5 * (col % 2))
-            
-            hexagons.append((hex_x, hex_y))
-    
-    return hexagons
-
-def place_troop(hex_center_x, hex_center_y, radius):
-    """
-    Place a troop (a circle) at the center of the given hex.
-    """
-    pygame.draw.circle(screen, GREEN, (int(hex_center_x), int(hex_center_y)), radius // 3)
-
-# Create a hexagon grid
-columns = 10
-rows = 10
-hexagons = create_hex_grid(columns, rows, HEX_SIZE)
-
-# Game loop
 running = True
-
 while running:
-
-    screen.fill(BLUE)  # Fill background with blue color
-
-    # Get mouse position
-    mouse_x, mouse_y = pygame.mouse.get_pos()
-
-    # Highlight the hex under the mouse and get its center
-    hovered_hex = highlight_hex_if_mouse_over(mouse_x, mouse_y, hexagons, HEX_SIZE)
-
-    # Draw troops on the map
-    for troop_x, troop_y in troops:
-
-        place_troop(troop_x, troop_y, HEX_SIZE)
-
-    # Event handling
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             running = False
-        
-        elif event.type == pygame.MOUSEBUTTONDOWN and hovered_hex:
-            # If a hex is clicked, add it to the list of troops
-            troops.append(hovered_hex)
-
+    
+    # Clear screen
+    screen.fill(WHITE)
+    
+    # Draw the grid
+    draw_grid(screen, map_width, map_height, hex_size)
+    
+    # Get mouse position
+    mouse_pos = pygame.mouse.get_pos()
+    
+    # Convert mouse position to axial coordinates
+    q, r = pixel_to_axial(mouse_pos[0], mouse_pos[1], hex_size)
+    
+    # Highlight the hexagon under the mouse
+    if (0 <= q < map_width) and (0 <= r < map_height):
+        center = axial_to_pixel(q, r, hex_size)
+        draw_hexagon(screen, center, hex_size, HIGHLIGHT)
+    
+    # Update the display
     pygame.display.flip()
 
-# Quit pygame
 pygame.quit()
