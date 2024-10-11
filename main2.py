@@ -29,7 +29,7 @@ def draw_hex(surface, color, pos, hex_size):
 
     #border setings
 
-    border_thickness = 3
+    border_thickness = 2
     border_color = (0,0,0)
 
     #main logic part for drawing hexagons
@@ -67,7 +67,7 @@ pos6 = (pos4[0], pos4[1]+ hex_offset_y)
 run = True
 
 rows = 5
-columns = 5
+columns = 2
 
 while run:
 
@@ -90,7 +90,7 @@ while run:
 
         for column in range(columns):
 
-            x = x_start + (hex_size*column) + (hex_offset_x*column)/2
+            x = x_start + ((hex_size*column) + (hex_offset_x*column)/2)-column
             y = y_start + (hex_height*row)/2 + (hex_offset_y*row)/2
 
             if column % 2 == 1:
