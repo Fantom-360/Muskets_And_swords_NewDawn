@@ -78,14 +78,7 @@ while run:
             run = False
         
     screen.fill((255, 255, 255))
-    '''
-    draw_hex(screen, hex_color, pos1, hex_size) 
-    draw_hex(screen, hex_color, pos2, hex_size)
-    draw_hex(screen, hex_color, pos4, hex_size)
-    draw_hex(screen, hex_color, pos3, hex_size)
-    draw_hex(screen, hex_color, pos5, hex_size)
-    draw_hex(screen, hex_color, pos6, hex_size)
-    '''
+
     for row in range(rows):
 
         for column in range(columns):
