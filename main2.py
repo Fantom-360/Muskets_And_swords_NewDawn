@@ -3,7 +3,7 @@ import pygame
 
 pygame.init()
 
-screen_setup = (800, 600)
+screen_setup = (900, 600)
 
 hex_color = (0, 0, 255)
 
@@ -22,8 +22,8 @@ hex_height = math.sqrt(3) * hex_size
 hex_offset_x = 3/4 * hex_width
 hex_offset_y = hex_height
 
-x_start = 50
-y_start = 50
+x_start = 0
+y_start = 0
 
 def draw_hex(surface, color, pos, hex_size):
 
@@ -53,21 +53,10 @@ def draw_hex(surface, color, pos, hex_size):
 
         pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
 
-x_hex_down = x_start + hex_offset_x/2 + hex_size
-y_hex_down = y_start + hex_offset_y/2
-x_hex_far_left = x_start + hex_size * 3
-
-pos1 = (x_start, y_start)
-pos2 = (x_hex_down, y_hex_down)
-pos4 = (x_hex_far_left, y_start)
-pos3 = (pos1[0], pos1[1]+ hex_offset_y)
-pos5 = (pos2[0], pos2[1]+ hex_offset_y)
-pos6 = (pos4[0], pos4[1]+ hex_offset_y)
-
 run = True
 
-rows = 5
-columns = 2
+rows = 11
+columns = 15
 
 while run:
 
@@ -83,8 +72,8 @@ while run:
 
         for column in range(columns):
 
-            x = x_start + ((hex_size*column) + (hex_offset_x*column)/2)-column
-            y = y_start + (hex_height*row)/2 + (hex_offset_y*row)/2
+            x = x_start + (hex_offset_x)*column + (hex_offset_x*1/3)*column
+            y = y_start + (hex_offset_y)*row
 
             if column % 2 == 1:
 
