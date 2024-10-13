@@ -1,5 +1,5 @@
 Add:
-    File named __maps__:
+        File named __maps__:
                             File with map tiles:
                                                 path
                                                 plains
@@ -7,45 +7,32 @@ Add:
                                                 hill
                                                 river
                                                 bridge
+                                                border
 
                                                 Each will have two Graphic variants: Winter - white
                                                                                      Sprink - green
 
 
                                                 specialiti you can break the ice on winter maps
-    file with images:
+        file with images:
                         troops - 5 color variants for oponents - red - defaul1 - df for player
                                                                  blue - defalut2 - df for enemy
                                                                  green
                                                                  yellow
                                                                  brown
                         cannons - same as troops with color
-    abilities:
-    troops: movement 2 tiles per turn, when on road 3 tiles but only on road
-            health 20 hp points, if lost 4 hp it will lose one musketeer
-            attack power/Mdmg = chance to hit = how many musketeers left #so if the musketeers are 3 the chance is 1 - 3 Mdmg if there is 5 musketeers the chance is 3 - 5 and so on
-            sword attack/Sdmg = chance to hit = 
+        abilities:
+        troops: movement 2 tiles per turn, when on road 3 tiles but only on road
+                health 20 hp points, if lost 4 hp it will lose one musketeer
+                attack power/Mdmg = chance to hit = how many musketeers left #so if the musketeers are 3 the chance is 1 - 3 Mdmg if there is 5 musketeers the chance is 3 - 5 and so on
+                sword attack/Sdmg = chance to hit = 
 
 
 
 
 
 
-hexagonal grid: add: main grid + try to figure how to cords between them 
-        first idea: make it that when i say how many row it create rows the for loop should only go for 2 times one for the 3 hexagons and the second one for the socond row of grids
-        cord fugurated, now proble return them on the right hexagon
-        create test figure circle|tryangle on hex by cords on hex centre
 
-        selcting unit will be thing of counting an distance between mouse pos and center of hex to ensure that we can get of that rounding stuff 
-        also i want to ensure that the code is easy to read so I'm still making my self go more further the rabbit hole on the theme of making things with hexeagos
-        and starting the project over 
-
-        hexagonal grid should be drawn normaly but conecting the hex grid for further progress of pathfinding and moving from one to another 
-
-
-        but well I'm still trying to figure out some thing i dont stil fully understand so it wil be a lot of fun and it is a lot of fun
-
-        "ohh my progress is so slow bc ||i miss my loved one|| they are somewhere and the night are so lonely"
 
 
 

@@ -1,11 +1,9 @@
-import pygame
 import math
-
-## game set up
+import pygame
 
 pygame.init()
 
-screen_setup = (800, 600)
+screen_setup = (900, 600)
 
 hex_color = (0, 0, 255)
 
@@ -13,32 +11,28 @@ screen = pygame.display.set_mode(screen_setup)
 
 clock = pygame.time.Clock()
 
-
-#class HexObject:
-#    def __init__(self, surface, color, center, hex_size):
-
-## main sizes/ game values
+#basic hex parameter
 
 hex_size = 30
-
+hex_width = 3/2 * hex_size
 hex_height = math.sqrt(3) * hex_size
 
-hex_widht = 2 * hex_size
+#hex offsets for flat top hexes and for [grid]
 
-x_offset = 3/2 * hex_size
+hex_offset_x = 3/4 * hex_width
+hex_offset_y = hex_height
 
-y_offset = hex_height
+x_start = 50
+y_start = 50
 
+def draw_hex(surface, color, pos, hex_size):
 
+    #border setings
 
+    border_thickness = 2
+    border_color = (0,0,0)
 
-
-#main hex drawing func
-def drawHex(surface, color, pos):
-
-    border_thickenss = 3
-
-    border_col = (0, 0, 0)
+    #main logic part for drawing hexagons
 
     points = []
 
@@ -46,109 +40,60 @@ def drawHex(surface, color, pos):
 
         angle = math.radians(60*i)
 
-        x_i = pos[0] + hex_size * math.cos(angle)
-        y_i = pos[1] + hex_size * math.sin(angle)
+        point_x = pos[0] + hex_size * math.cos(angle)
+        point_y = pos[1] + hex_size * math.sin(angle)
 
-        points.append((x_i, y_i))
+        points.append((point_x, point_y))
 
     pygame.draw.polygon(surface, color, points)
 
+    #drawing a border on hexagon
+
     for i in range(6):
 
-        pygame.draw.line(surface, border_col, points[i], points[(i+1) % 6], border_thickenss)
+        pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
 
-# creating a hex map for coords and stuff
+def draw_hex_drid(columns:int, rows:int):
 
-def create_hex_map(rows, cols):
+    hex_coords = []
 
-    hex_map = []
+    for row in range(rows):
 
-    for r in range(rows):
+        for column in range(columns):
 
-        row = []
+            x = x_start + (hex_offset_x)*column + (hex_offset_x*1/3)*column
+            y = y_start + (hex_offset_y)*row
 
-        for q in range(cols):
+            if column % 2 == 1:
 
-            #new hex creating logic based on old one but still new and newly with coords
+                y += hex_offset_y/2
 
-            x = ((0 + x_offset) - (q / 2) + (q * x_offset))
+            hex_pos = (x, y)
+            draw_hex(screen, hex_color, hex_pos, hex_size)
+            hex_coords.append((column, row))
 
-            y = ((0 + y_offset) - (r / 2) + (r * y_offset))
+    return hex_coords
 
-            if q % 2 == 1:
+run = True
+rows = 2
+columns = 2
 
-                y += y_offset / 2
+while run:
 
-            row.append((x, y))
+    for event in pygame.event.get():
 
-        hex_map.append(row)
-    
-    return hex_map
+        if event.type == pygame.QUIT:
 
-def pixel_to_hex(x, y):
-
-    q = (x * math.sqrt(3)/3 - y / 3) / hex_size
-    
-    r = y * 2/3 / hex_size
-
-    return hex_round(q, r)
-
-# Function to round hex coordinates to nearest integer
-def hex_round(q, r):
-    z = -q - r
-    rq = round(q)
-    rr = round(r)
-    rz = round(z)
-
-    q_diff = abs(rq - q)
-    r_diff = abs(rr - r)
-    z_diff = abs(rz - z)
-
-    if q_diff > r_diff and q_diff > z_diff:
-        rq = -rr - rz
-    elif r_diff > z_diff:
-        rr = -rq - rz
-
-    return (rq, rr)
-
-
-
-#main game set up
-def main():
-
-    rows, cols = 10, 17 #number of hexes
-
-    hex_map = create_hex_map(rows, cols)
-
-    # main game loop
-
-    running = True
-
-    while running:
-
-        for event in pygame.event.get():
-
-            if event.type == pygame.QUIT:
-
-                running = False
+            run = False
         
-        screen.fill((255, 255, 255))
+    screen.fill((255, 255, 255))
 
+    a = draw_hex_drid(columns, rows)
 
-        for row in hex_map:
+    pygame.display.flip()
 
-            for hex_pos in row:
+    clock.tick(60)
 
-                drawHex(screen, hex_color, hex_pos)
+pygame.quit()
 
-        pygame.display.flip()
-
-        clock.tick(60)
-
-    pygame.quit()
-
-    print(hex_map)
-
-if __name__ == "__main__":
-
-    main()
+print(a)
