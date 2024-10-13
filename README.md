@@ -16,7 +16,7 @@ This project was created with a goal for creating a turn base, point and click s
 For first this will be the updated chapter, well in this chapter we'll discous how is the progress is going and what is the current problem, I'm mainly focusing on right now and for the mean time when I learn how to add diagrams and stuff, I'll make something,  me and project structuring, well as i sayed, I'll try my best.
 
 ### Main problem:
-Nodes as hexagones and making levels
+> Nodes as hexagones and making levels
 
 ## Diagram (if i will add one)
 
