@@ -10,9 +10,9 @@ def call_img(season:str, land_type:str):
     image_folder = r'C:\Users\Majitel\Documents\programing\Muskets_And_swords_NewDawn\hex_props\hex_items\images'
     terrain = { 
         "1" : {
-            "1": os.path.join(image_folder, "plains_spr.png"),
-            "2": os.path.join(image_folder, "forest_spring.png"),
-            "3": os.path.join(image_folder, "hill_spring.png")
+            "1": os.path.join(image_folder, 'plains_spr.png'),
+            "2": os.path.join(image_folder, 'forest_spring.png'),
+            "3": os.path.join(image_folder, 'hill_spring.png')
         },
         "2" : {
             "1": os.path.join(image_folder, "plains_winter.png"),
