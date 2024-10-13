@@ -74,7 +74,7 @@ while run:
 
         if event.type == pygame.QUIT:
             run = False
-            
+
     screen.fill((255, 255, 255))
     a = draw_hex_grid(columns, rows)
 
@@ -88,3 +88,5 @@ while run:
     clock.tick(60)
 pygame.quit()
 print(a)
+
+
