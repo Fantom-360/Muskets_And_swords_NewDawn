@@ -68,15 +68,15 @@ def axial_to_pixel(axial_coords:tuple):
     return xy_coords
 
 run = True
-rows = 2
-columns = 2
+rows = 5
+columns = 5
 
 while run:
     for event in pygame.event.get():
         if event.type == pygame.QUIT:
             run = False
 
-    screen.fill((255, 255, 255))
+    screen.fill((0, 102, 204))
     hex_graph = create_hex_grid(columns, rows)
     hex_graph.update(level_1)
             

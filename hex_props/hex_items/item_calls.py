@@ -15,8 +15,8 @@ def call_img(season:str, land_type:str):
             "3": os.path.join(image_folder, r'hill_spring.png')
         },
         "2" : {
-            "1": os.path.join(image_folder, r"plains_winter.png"),
-            "2": os.path.join(image_folder, r"plains_winter.png"),
+            "1": os.path.join(image_folder, r"plains_win.png"),
+            "2": os.path.join(image_folder, r"forest_win.png"),
             "3": os.path.join(image_folder, r"plains_winter.png"),
         }
     }
