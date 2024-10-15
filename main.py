@@ -1,6 +1,8 @@
 import math
 import pygame
+import pygame.gfxdraw
 from hex_props.Hexagons import Hex_node
+from Levels.level1 import level_1
 
 pygame.init()
 screen_setup = (900, 600)
@@ -29,16 +31,14 @@ def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
 
         points.append((point_x, point_y))
 
-    a = pygame.draw.polygon(surface, (0,0,0), points, 2)
+    pygame.gfxdraw.textured_polygon(surface, points, hex_node.image,hex_size*-1, hex_size*-1)
 
-    rect_surface = pygame.surface(a.width, a.height)
+    #pygame.draw.polygon(surface, (0,0,0), points, 2)
+
+    #rect_surface = pygame.surface(a.width, a.height)
 
     #hex_node.draw_terrain(surface, (pos[0] - hex_size, pos[1] - hex_size))
 
-
-
-
-    
     for i in range(6):
 
         pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
@@ -68,8 +68,8 @@ def axial_to_pixel(axial_coords:tuple):
     return xy_coords
 
 run = True
-rows = 5
-columns = 5
+rows = 2
+columns = 2
 
 while run:
     for event in pygame.event.get():
@@ -78,6 +78,7 @@ while run:
 
     screen.fill((255, 255, 255))
     hex_graph = create_hex_grid(columns, rows)
+    hex_graph.update(level_1)
             
     for key, value in hex_graph.items():
         hex_pos = axial_to_pixel(key)
