@@ -28,6 +28,7 @@ Add:
                 sword attack/Sdmg = chance to hit = 
 
 
+make the drawing func that it will blit the picture ito the poligon also when drawing it will or had to have as an parameter the Hex_node class bc from that we can call on each hex that is going to be drawn pass the image i want to be in the polygon hex shape, so to specify everything 1. re do the drawing func a little bit to make images on the hex_node where it is 2. alter the grid drawing to firstly crating the graph abstractly to ensure we have the Hex_nodes than pass the coordinates and using my equation to from the q, r coords do the x and y coords and than drawing them with the proper images 3. this also opent that wen i create a dikt with the graph abstract i can easely had code some leves and then pasing the abstract graph to make draw the hex grid using my equation and the Hex_node to blit the pictures 
 
 
 
@@ -37,5 +38,4 @@ Add:
 
 
 
-basic same long side hexagon: made from 6 same tryangles each side of tryangle is 60° and every side is same, so radius = side
 
