@@ -30,7 +30,8 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 - [✗] look on how to make enemy ai or algorithm
 - [✗] finish the project
 
-## Diagram (if i will add one)
+## Prograss photos and diagrams(if i will add one)
+![hexes with pictures](./readme_images/Prograss_shot.png)
 
 
 
