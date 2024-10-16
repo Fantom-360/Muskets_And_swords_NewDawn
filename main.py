@@ -32,6 +32,7 @@ def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
         points.append((point_x, point_y))
 
     pygame.gfxdraw.textured_polygon(surface, points, hex_node.image,hex_size*-1, hex_size*-1)
+    
 
     #pygame.draw.polygon(surface, (0,0,0), points, 2)
 
@@ -42,6 +43,17 @@ def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
     for i in range(6):
 
         pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
+
+    text_surface = hexed_text(hex_node)
+    text_rect = text_surface.get_rect(center=pos)
+    surface.blit(text_surface, text_rect)
+
+def hexed_text(hex_node:Hex_node):
+    font = pygame.font.Font(None, 24)  # Increase the font size for visibility
+    text_surface = font.render(f"[{hex_node.q}, {hex_node.r}]", True, (0, 0, 0))
+    return text_surface
+    
+    
 
 def create_hex_grid(columns:int, rows:int):
     """Create the hexagon grid and corresponding Hex_node instances."""
@@ -68,8 +80,8 @@ def axial_to_pixel(axial_coords:tuple):
     return xy_coords
 
 run = True
-rows = 5
-columns = 5
+rows = 10
+columns = 19
 
 while run:
     for event in pygame.event.get():
@@ -78,7 +90,16 @@ while run:
 
     screen.fill((0, 102, 204))
     hex_graph = create_hex_grid(columns, rows)
-    hex_graph.update(level_1)
+    #print(hex_graph.keys())
+    #hex_graph.update(level_1)
+
+    """Down = (0, +1)
+       Up = (0, -1)
+       Down_left = (-1, +1)
+       Down_right = (+1 ,+1)
+       Up_left = (-1, 0)
+       Up_right = (+1, 0)
+       """
             
     for key, value in hex_graph.items():
         hex_pos = axial_to_pixel(key)

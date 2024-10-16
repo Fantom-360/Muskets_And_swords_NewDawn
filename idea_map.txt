@@ -33,7 +33,7 @@ make the drawing func that it will blit the picture ito the poligon also when dr
 
 
 
-
+if the neibor is going to row htat has the column num % 2 the we need to alter the neibors a little also wehn we are going back but we need to connect it firstly
 
 
 
