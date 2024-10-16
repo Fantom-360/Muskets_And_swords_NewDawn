@@ -16,19 +16,19 @@ This project was created with a goal for creating a turn base, point and click s
 For first this will be the updated chapter, well in this chapter we'll discous how is the progress is going and what is the current problem, I'm mainly focusing on right now and for the mean time when I learn how to add diagrams and stuff, I'll make something,  me and project structuring, well as i sayed, I'll try my best.
 
 ### Main prograss bar(can be extended/edited in future)
-- [✓] Have an idea
-- [✓] Make proper hex generating
-- [✓] Make hexes with pictures
-- [✓] Make hexes as Nodes
-- [~] Make a full graph structure
-- [~] Make graphics for all hexes
-- [~] Make some levels
-- [✗] Add strops
-- [✗] Make or look for algorith that will say where your mouse is(on what hex in hex grid)
-- [✗] Make a main menu
-- [✗] make option menu
-- [✗] look on how to make enemy ai or algorithm
-- [✗] finish the project
+- `[✓]` Have an idea
+- `[✓]` Make proper hex generating
+- `[✓]` Make hexes with pictures
+- `[✓]` Make hexes as Nodes
+- `[~]` Make a full graph structure
+- `[~]` Make graphics for all hexes
+- `[~]` Make some levels
+- `[✗]` Add strops
+- `[✗]` Make or look for algorith that will say where your mouse is(on what hex in hex grid)
+- `[✗]` Make a main menu
+- `[✗]` make option menu
+- `[✗]` look on how to make enemy ai or algorithm
+- `[✗]` finish the project
 
 + `✓` --> Done
 + `~` --> In progress
