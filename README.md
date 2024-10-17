@@ -45,7 +45,7 @@ The best way is to clone the repository go to main.py file and in a IDE(integrat
 Enjoy your plaing
 
 ## If you want to help me don't hasitate:
-I'm always open to knowing more and well as I sayed I'm still learning, so if you want to help me don't hassitate and fork my code but always when you make something new or want to emprove something what was mine code just prperly comment have you done before commiting thanks
+I'm always open to knowing more and well as I sayed I'm still learning, so if you want to help me don't hasitate and fork my code but always when you make something new or want to emprove something what was mine code just properly comment it before commiting, thanks
 
 
 
