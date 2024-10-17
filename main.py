@@ -59,7 +59,7 @@ def create_hex_grid(columns:int, rows:int):
     """Create the hexagon grid and corresponding Hex_node instances."""
     def_terrain_tuple = ("1", "1")
     def_hex_graph = {}
-
+    dict
     for row in range(rows):
         for column in range(columns):
             hex_node = Hex_node(column, row, def_terrain_tuple)
