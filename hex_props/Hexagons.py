@@ -9,6 +9,9 @@ class Hex_node:
         self.r = row
         self.terrain_tuple = terrain_tuple
         self.image = self.load_image()
+        self.even_dir = [(+1,  0), (+1, -1), (0, -1), (-1, 0), (-1, +1), (0, +1)]
+        self.odd_dir = [(+1,  0), (+1, +1), (0, +1), (-1, 0), (-1, -1), (0, -1)]
+        self.neighbors = self.get_neighbors()
 
     def draw_terrain(self, screen, pos):
         """Draw the terrain image on the screen."""
@@ -29,7 +32,22 @@ class Hex_node:
             print(f"Error loading image: {e}")
             return None
         
+    def get_neighbors(self):
+
+        if self.q % 2 == 0:  # Even column
+            directions = self.even_dir
+            
+        else:  # Odd column
+            directions = self.odd_dir
         
+        neighbors = []
+        for direction in directions:
+            dq, dr = direction
+            neighbor_q = self.q + dq
+            neighbor_r = self.r + dr
+            neighbors.append((neighbor_q, neighbor_r))
+        
+        return neighbors
 
     
         
