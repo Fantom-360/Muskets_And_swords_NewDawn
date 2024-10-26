@@ -92,15 +92,7 @@ while run:
     hex_graph = create_hex_grid(columns, rows)
     #print(hex_graph.keys())
     #hex_graph.update(level_1)
-
-    """Down = (0, +1)
-       Up = (0, -1)
-       Down_left = (-1, +1)
-       Down_right = (+1 ,+1)
-       Up_left = (-1, 0)
-       Up_right = (+1, 0)
-       """
-            
+        
     for key, value in hex_graph.items():
         hex_pos = axial_to_pixel(key)
         draw_Hex_with_Terrain(screen, hex_pos, value)
