@@ -4,10 +4,11 @@ import time
 from hex_props.hex_items import item_calls as calls
 
 class Hex_node:
-    def __init__(self, column:int, row:int, terrain_tuple=("1", "1")):
+    def __init__(self, column:int, row:int, terrain_tuple=("1", "1"), map_size:tuple = (None, None)):
         self.q = column
         self.r = row
         self.terrain_tuple = terrain_tuple
+        self.map_size = map_size
         self.image = self.load_image()
         self.even_dir = [(+1,  0), (+1, -1), (0, -1), (-1, 0), (-1, +1), (0, +1)]
         self.odd_dir = [(+1,  0), (+1, +1), (0, +1), (-1, 0), (-1, -1), (0, -1)]
@@ -42,9 +43,13 @@ class Hex_node:
         
         neighbors = []
         for direction in directions:
+
+
             dq, dr = direction
             neighbor_q = self.q + dq
             neighbor_r = self.r + dr
+            if (neighbor_q < 0 or neighbor_r < 0) or (neighbor_r == self.map_size[0] or neighbor_q == self.map_size[1]):
+                continue
             neighbors.append((neighbor_q, neighbor_r))
         
         return neighbors
