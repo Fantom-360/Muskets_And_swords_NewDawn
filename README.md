@@ -20,11 +20,11 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 - `[✓]` Make proper hex generating
 - `[✓]` Make hexes with pictures
 - `[✓]` Make hexes as Nodes
-- `[~]` Make a full graph structure
-- `[~]` Make graphics for all hexes
+- `[✓]` Make a full graph structure
+- `[✓]` Make graphics for all hexes
 - `[~]` Make some levels
-- `[✗]` Add strops
-- `[✗]` Make or look for algorith that will say where your mouse is(on what hex in hex grid)
+- `[~]` Add strops
+- `[~]` Make or look for algorith that will say where your mouse is(on what hex in hex grid)
 - `[✗]` Make a main menu
 - `[✗]` make option menu
 - `[✗]` look on how to make enemy ai or algorithm

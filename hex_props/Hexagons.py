@@ -13,6 +13,10 @@ class Hex_node:
         self.even_dir = [(+1,  0), (+1, -1), (0, -1), (-1, 0), (-1, +1), (0, +1)]
         self.odd_dir = [(+1,  0), (+1, +1), (0, +1), (-1, 0), (-1, -1), (0, -1)]
         self.neighbors = self.get_neighbors()
+        self.movement_cost = 1
+        self.walkeble = True
+        #self.land_bonus = self.get_land_bonus()
+        
 
     def draw_terrain(self, screen, pos):
         """Draw the terrain image on the screen."""
@@ -53,6 +57,25 @@ class Hex_node:
             neighbors.append((neighbor_q, neighbor_r))
         
         return neighbors
+    '''
+    def get_land_bonus(self):
+        if self.terrain_tuple[1] == "1":
+            if self.troop == musket:
+                musket.self.attact_chance += (10/100)
+            if self.troop == horse:
+                horse.self.movement += 0.5
+        if self.terrain_tuple[1] == "2":
+            if self.troop == musket:
+                musket.self.defence = (musket.self.defence/100 + 10/100)*100
+            if self.troop == horse:
+                horse.self.movement -= 1
+        if self.terrain_tuple[1] == "3":
+            if self.troop == cannon:
+                cannon.self.range += 2
+    '''
+
+
+        
 
     
         
