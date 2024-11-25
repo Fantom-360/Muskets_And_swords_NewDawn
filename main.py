@@ -32,13 +32,6 @@ def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
         points.append((point_x, point_y))
 
     pygame.gfxdraw.textured_polygon(surface, points, hex_node.image,hex_size*-1, hex_size*-1)
-    
-
-    #pygame.draw.polygon(surface, (0,0,0), points, 2)
-
-    #rect_surface = pygame.surface(a.width, a.height)
-
-    #hex_node.draw_terrain(surface, (pos[0] - hex_size, pos[1] - hex_size))
 
     for i in range(6):
 
@@ -84,8 +77,8 @@ def axial_to_pixel(axial_coords:tuple):
 
 
 run = True
-rows = 5
-columns = 5
+rows = 10
+columns = 10
 
 while run:
     for event in pygame.event.get():
