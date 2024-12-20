@@ -23,8 +23,11 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 - `[✓]` Make a full graph structure
 - `[✓]` Make graphics for all hexes
 - `[~]` Make some levels
-- `[~]` Add strops
+- `[~]` Add trops
 - `[~]` Make or look for algorith that will say where your mouse is(on what hex in hex grid)
+- `[~]` Make bonuses in % to the hex tiles using thr graph structure  
+- `[✗]` Think of some algorithm for path finding for enemy AI
+- `[✗]` Make level Editor
 - `[✗]` Make a main menu
 - `[✗]` make option menu
 - `[✗]` look on how to make enemy ai or algorithm
