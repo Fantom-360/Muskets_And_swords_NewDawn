@@ -25,7 +25,7 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 - `[~]` Make some levels
 - `[~]` Add trops
 - `[~]` Make or look for algorith that will say where your mouse is(on what hex in hex grid)
-- `[~]` Make bonuses in % to the hex tiles using thr graph structure  
+- `[~]` Make bonuses in % to the hex tiles using thr graph structure
 - `[✗]` Think of some algorithm for path finding for enemy AI
 - `[✗]` Make level Editor
 - `[✗]` Make a main menu

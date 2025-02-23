@@ -2,7 +2,7 @@ import math
 import pygame
 import pygame.gfxdraw
 from hex_props.Hexagons import Hex_node
-from main_game_props.Levels.level1 import level_1
+from game_props.Levels.level1 import level
 
 pygame.init()
 screen_setup = (900, 600)
@@ -17,7 +17,7 @@ hex_offset_y = hex_height
 x_start = 50
 y_start = 50
 
-def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
+def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node, debug = None):
     border_thickness = 2
     border_color = (0,0,0)
     points = []
@@ -37,10 +37,10 @@ def draw_Hex_with_Terrain(surface, pos, hex_node:Hex_node):
 
         pygame.draw.line(surface, border_color, points[i], points[(i+1) % 6], border_thickness)
 
-    
-    text_surface = hexed_text(hex_node)
-    text_rect = text_surface.get_rect(center=pos)
-    surface.blit(text_surface, text_rect)
+    if debug != None:
+        text_surface = hexed_text(hex_node)
+        text_rect = text_surface.get_rect(center=pos)
+        surface.blit(text_surface, text_rect)
 
 
 def hexed_text(hex_node:Hex_node):
@@ -88,15 +88,17 @@ while run:
     screen.fill((0, 102, 204))
     hex_graph = create_hex_grid(columns, rows)
     #print(hex_graph.keys())
-    hex_graph.update(level_1)
+    hex_graph.update(level)
         
     for key, value in hex_graph.items():
         hex_pos = axial_to_pixel(key)
-        draw_Hex_with_Terrain(screen, hex_pos, value)
+        draw_Hex_with_Terrain(screen, hex_pos, value, debug=True)
 
     pygame.display.flip()
     clock.tick(60)
 pygame.quit()
+
+
 
 
 
