@@ -92,7 +92,7 @@ while run:
         
     for key, value in hex_graph.items():
         hex_pos = axial_to_pixel(key)
-        draw_Hex_with_Terrain(screen, hex_pos, value, debug=True)
+        draw_Hex_with_Terrain(screen, hex_pos, value)
 
     pygame.display.flip()
     clock.tick(60)
