@@ -23,4 +23,4 @@ class gunner:
                     print(enemy.health)
 
     def move(self, current_hex, ):
-         
+         pass

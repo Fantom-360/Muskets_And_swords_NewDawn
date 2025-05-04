@@ -7,7 +7,7 @@ def call_img(season:str, land_type:str):
     land_type (str): "1"-plains "2"-forest "3"-hill
 
     """
-    image_folder = image_folder = os.path.join(os.getcwd(), 'hex_props', 'hex_items', 'images')
+    image_folder = image_folder = os.path.join(os.getcwd(),'source', 'hex_props', 'hex_items', 'images')
     terrain = { 
         "1" : {
             "1": os.path.join(image_folder, r'plains_spr.png'),
