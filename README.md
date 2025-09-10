@@ -44,7 +44,7 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 
 ## how to run the game for your self
 
-The best way is to clone the repository go to main.py file and in a IDE(integrated development environment) like VScode or others or in command prompt, first install libs. in requiarments than run the main file and the game should start up and should be working normaly, yup and if you dont have instaled the module(libralies) nedeed look at the dependencies file there will be all the outside libs you need to download
+The best way is to clone the repository go to main.py file and in a IDE(integrated development environment) like VScode or others or in command prompt, first install libs. in requiarments than run the main file and the game should start up and should be working normaly, yup and if you dont have instaled the module(libralies) nedeed look at the requiarments file there will be all the outside libs you need to download
 Enjoy your plaing
 
 ## If you want to help me don't hasitate:
