@@ -38,7 +38,7 @@ For first this will be the updated chapter, well in this chapter we'll discous h
 + `✗` --> Not in progress, yet
 
 ### Prograss photos and diagrams(if i will add one)
-![hexes with pictures](./source/readme_images/Prograss_shot.png)
+![hexes with pictures](./readme_images/Prograss_shot.png)
 
 
 
